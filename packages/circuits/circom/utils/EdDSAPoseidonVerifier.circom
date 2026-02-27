@@ -82,7 +82,7 @@ template EdDSAPoseidonVerifier() {
     // Components to handle edge cases and ensure that all conditions 
     // for a valid signature are met, including the 
     // public key not being zero and other integrity checks.
-    var computedIsAxZero = IsZero()(publicKeyX);
+    var computedIsAxZero = IsZero()(computedDouble3XOut);
     var computedIsAxEqual = IsEqual()([computedIsAxZero, 0]);
     var computedIsCcZero = IsZero()(computedCompConstant);
     var computedIsValid = IsEqual()([computedIsLeftRightValid + computedIsAxEqual + computedIsCcZero, 3]);
