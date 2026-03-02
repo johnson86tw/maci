@@ -31,8 +31,12 @@ contract MACI is IMACI, DomainObjs, Params, Hasher {
 
   uint8 internal constant STATE_TREE_ARITY = 2;
 
-  /// @notice This is the poseidon hash of the pad key
+  /// @notice This is the poseidon hash of the pad key. Check crypto/SnarkConstants.sol for more info about the pad key.
   uint256 internal constant PAD_KEY_HASH = 1309255631273308531193241901289907343161346846555918942743921933037802809814;
+
+  /// @notice This is poseidon_hash2([1,1]), used to verify that hash libraries are linked correctly
+  uint256 internal constant POSEIDON_VALIDITY_CHECK_VALUE =
+    217234377348884654691879377518794323857294947151490278790710809376325639809;
 
   /// @notice The roots of the empty ballot trees
   uint256[5] public emptyBallotRoots;
@@ -129,7 +133,7 @@ contract MACI is IMACI, DomainObjs, Params, Hasher {
     emptyBallotRoots = initParams.emptyBallotRoots;
 
     // Verify linked poseidon libraries
-    if (hash2([uint256(1), uint256(1)]) == 0) revert PoseidonHashLibrariesNotLinked();
+    if (hash2([uint256(1), uint256(1)]) != POSEIDON_VALIDITY_CHECK_VALUE) revert PoseidonHashLibrariesNotLinked();
   }
 
   /// @inheritdoc IMACI
