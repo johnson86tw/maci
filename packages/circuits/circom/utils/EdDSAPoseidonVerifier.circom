@@ -9,6 +9,7 @@ include "./escalarmulany.circom";
 include "./escalarmulfix.circom";
 // local imports
 include "./PoseidonHasher.circom";
+include "./IsOnCurve.circom";
 
 /**
  * Variant of the EdDSAPoseidonVerifier template from circomlib
@@ -36,6 +37,10 @@ template EdDSAPoseidonVerifier() {
     signal input messageHash;
     // Output signal for the validity of the signature.
     signal output isValid;
+
+    // Verify the public key and signature point are on the BabyJubJub curve.
+    var computedIsPkOnCurve = IsOnCurve()(publicKeyX, publicKeyY);
+    var computedIsSpOnCurve = IsOnCurve()(signaturePointX, signaturePointY);
 
     // Ensure signatureScalar<Subgroup Order.
     // convert the signature scalar signatureScalar into its binary representation.
@@ -85,7 +90,7 @@ template EdDSAPoseidonVerifier() {
     var computedIsAxZero = IsZero()(computedDouble3XOut);
     var computedIsAxEqual = IsEqual()([computedIsAxZero, 0]);
     var computedIsCcZero = IsZero()(computedCompConstant);
-    var computedIsValid = IsEqual()([computedIsLeftRightValid + computedIsAxEqual + computedIsCcZero, 3]);
+    var computedIsValid = IsEqual()([computedIsLeftRightValid + computedIsAxEqual + computedIsCcZero + computedIsPkOnCurve + computedIsSpOnCurve, 5]);
 
     isValid <== computedIsValid;
 }
