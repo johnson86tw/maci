@@ -112,6 +112,7 @@ contract MACI is IMACI, DomainObjs, Params, Hasher {
   error PoseidonHashLibrariesNotLinked();
   error TooManySignups();
   error InvalidPublicKey();
+  error InvalidVoteOptionTreeDepth(uint8 depth);
   error PollDoesNotExist(uint256 pollId);
   error UserNotSignedUp();
 
@@ -184,6 +185,12 @@ contract MACI is IMACI, DomainObjs, Params, Hasher {
       initialVoiceCreditProxy: IInitialVoiceCreditProxy(args.initialVoiceCreditProxy)
     });
 
+    uint8 voteOptionTreeDepth = args.treeDepths.voteOptionTreeDepth;
+
+    if (voteOptionTreeDepth == 0 || voteOptionTreeDepth > emptyBallotRoots.length) {
+      revert InvalidVoteOptionTreeDepth(voteOptionTreeDepth);
+    }
+
     IPollFactory.DeployPollArgs memory deployPollArgs = IPollFactory.DeployPollArgs({
       startDate: args.startDate,
       endDate: args.endDate,
@@ -191,7 +198,7 @@ contract MACI is IMACI, DomainObjs, Params, Hasher {
       messageBatchSize: args.messageBatchSize,
       coordinatorPublicKey: args.coordinatorPublicKey,
       extContracts: extContracts,
-      emptyBallotRoot: emptyBallotRoots[args.treeDepths.voteOptionTreeDepth - 1],
+      emptyBallotRoot: emptyBallotRoots[voteOptionTreeDepth - 1],
       pollId: pollId,
       relayers: args.relayers,
       voteOptions: args.voteOptions
