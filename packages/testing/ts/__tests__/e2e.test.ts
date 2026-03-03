@@ -892,7 +892,7 @@ describe("e2e tests", function test() {
         await publish({
           maciAddress: maciAddresses.maciContractAddress,
           publicKey: users[i].publicKey.serialize(),
-          stateIndex: 1n,
+          stateIndex: BigInt(i + 1),
           voteOptionIndex: 0n,
           nonce: 1n,
           pollId: 0n,
