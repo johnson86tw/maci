@@ -43,6 +43,7 @@
     "ethers": "^6.15.0",
     "hardhat": "^2.25.0",
     "@maci-protocol/circuits": "^3.0.0",
+    "@maci-protocol/contracts": "^3.0.0",
     "@maci-protocol/cli": "^3.0.0",
     "@maci-protocol/core": "^3.0.0",
     "@maci-protocol/crypto": "^3.0.0",
