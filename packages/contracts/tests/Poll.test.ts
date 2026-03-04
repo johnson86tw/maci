@@ -9,7 +9,7 @@ import { type EthereumProvider } from "hardhat/types";
 
 import { deployFreeForAllSignUpPolicy } from "../ts/deploy";
 import { type IVerifyingKeyStruct } from "../ts/types";
-import { getBlockTimestamp, getDefaultSigner, getSigners } from "../ts/utils";
+import { getBlockTimestamp, getSigners } from "../ts/utils";
 import {
   Poll__factory as PollFactory,
   type MACI,
@@ -44,6 +44,7 @@ describe("Poll", function test() {
   let pollPolicyContract: IBasePolicy;
   let initialVoiceCreditProxyContract: ConstantInitialVoiceCreditProxy;
   let signer: Signer;
+  let userSigners: Signer[];
 
   const coordinator = new Keypair();
 
@@ -55,7 +56,8 @@ describe("Poll", function test() {
 
   describe("deployment", () => {
     before(async () => {
-      signer = await getDefaultSigner();
+      const signers = await getSigners();
+      [signer, ...userSigners] = signers;
 
       const startDate = await getBlockTimestamp(signer);
 
@@ -76,10 +78,9 @@ describe("Poll", function test() {
         maciState.signUp(user.publicKey);
 
         // eslint-disable-next-line no-await-in-loop
-        await maciContract.signUp(
-          user.publicKey.asContractParam(),
-          AbiCoder.defaultAbiCoder().encode(["uint256"], [1]),
-        );
+        await maciContract
+          .connect(userSigners[i])
+          .signUp(user.publicKey.asContractParam(), AbiCoder.defaultAbiCoder().encode(["uint256"], [1]));
       }
 
       [pollPolicyContract] = await deployFreeForAllSignUpPolicy({}, signer, true);
@@ -220,14 +221,16 @@ describe("Poll", function test() {
         const publicKey = user.publicKey.asContractParam();
         const mockNullifier = AbiCoder.defaultAbiCoder().encode(["uint256"], [i]);
 
-        const response = await pollContract.joinPoll(
-          mockNullifier,
-          publicKey,
-          i,
-          mockProof,
-          AbiCoder.defaultAbiCoder().encode(["uint256"], [1]),
-          AbiCoder.defaultAbiCoder().encode(["uint256"], [1]),
-        );
+        const response = await pollContract
+          .connect(userSigners[i])
+          .joinPoll(
+            mockNullifier,
+            publicKey,
+            i,
+            mockProof,
+            AbiCoder.defaultAbiCoder().encode(["uint256"], [1]),
+            AbiCoder.defaultAbiCoder().encode(["uint256"], [1]),
+          );
         const receipt = await response.wait();
         const [event] = await pollContract.queryFilter(
           pollContract.filters.PollJoined,
@@ -349,6 +352,7 @@ describe("Poll", function test() {
         const mockNullifier = AbiCoder.defaultAbiCoder().encode(["uint256"], [i]);
 
         await contract
+          .connect(userSigners[i])
           .joinPoll(
             mockNullifier,
             publicKey,
@@ -361,14 +365,16 @@ describe("Poll", function test() {
       }
 
       await expect(
-        contract.joinPoll(
-          AbiCoder.defaultAbiCoder().encode(["uint256"], [maxUsers]),
-          new Keypair().publicKey.asContractParam(),
-          maxUsers,
-          mockProof,
-          AbiCoder.defaultAbiCoder().encode(["uint256"], [1]),
-          AbiCoder.defaultAbiCoder().encode(["uint256"], [1]),
-        ),
+        contract
+          .connect(userSigners[maxUsers])
+          .joinPoll(
+            AbiCoder.defaultAbiCoder().encode(["uint256"], [maxUsers]),
+            new Keypair().publicKey.asContractParam(),
+            maxUsers,
+            mockProof,
+            AbiCoder.defaultAbiCoder().encode(["uint256"], [1]),
+            AbiCoder.defaultAbiCoder().encode(["uint256"], [1]),
+          ),
       ).to.be.revertedWithCustomError(contract, "TooManySignups");
     });
   });

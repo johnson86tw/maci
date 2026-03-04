@@ -30,6 +30,7 @@ describe("MACI", function test() {
   const users = [new Keypair(), new Keypair(), new Keypair()];
 
   let signer: Signer;
+  let userSigners: Signer[];
 
   const maciState = new MaciState(STATE_TREE_DEPTH);
 
@@ -41,6 +42,8 @@ describe("MACI", function test() {
         stateTreeDepth: STATE_TREE_DEPTH,
         signer,
       });
+      const signers = await getSigners();
+      [signer, ...userSigners] = signers;
 
       maciContract = r.maciContract;
       signuPolicyContract = r.policyContract;
@@ -76,10 +79,9 @@ describe("MACI", function test() {
         const user = users[index];
 
         // eslint-disable-next-line no-await-in-loop
-        const tx = await maciContract.signUp(
-          user.publicKey.asContractParam(),
-          AbiCoder.defaultAbiCoder().encode(["uint256"], [1]),
-        );
+        const tx = await maciContract
+          .connect(userSigners[index])
+          .signUp(user.publicKey.asContractParam(), AbiCoder.defaultAbiCoder().encode(["uint256"], [1]));
         // eslint-disable-next-line no-await-in-loop
         const receipt = await tx.wait();
         expect(receipt?.status).to.eq(1);
@@ -158,7 +160,9 @@ describe("MACI", function test() {
       // start from one as we already have one signup (blank state leaf)
       for (let i = 1; i < maxUsers; i += 1) {
         // eslint-disable-next-line no-await-in-loop
-        await maci.signUp(keypair.publicKey.asContractParam(), AbiCoder.defaultAbiCoder().encode(["uint256"], [1]));
+        await maci
+          .connect(userSigners[i])
+          .signUp(keypair.publicKey.asContractParam(), AbiCoder.defaultAbiCoder().encode(["uint256"], [1]));
       }
 
       // the next signup should fail
@@ -181,7 +185,9 @@ describe("MACI", function test() {
       for (let i = 1; i < maxUsers; i += 1) {
         const keypair = new Keypair();
         // eslint-disable-next-line no-await-in-loop
-        await maci.signUp(keypair.publicKey.asContractParam(), AbiCoder.defaultAbiCoder().encode(["uint256"], [1]));
+        await maci
+          .connect(userSigners[i])
+          .signUp(keypair.publicKey.asContractParam(), AbiCoder.defaultAbiCoder().encode(["uint256"], [1]));
       }
     });
   });
