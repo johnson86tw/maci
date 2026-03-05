@@ -320,7 +320,7 @@ importers:
         version: 8.1.0
       lodash:
         specifier: ^4.17.21
-        version: 4.17.21
+        version: 4.17.23
       mongoose:
         specifier: ^8.18.1
         version: 8.18.1(socks@2.8.7)
@@ -752,7 +752,7 @@ importers:
         version: 2.2.3
       lodash:
         specifier: ^4.17.21
-        version: 4.17.21
+        version: 4.17.23
     devDependencies:
       '@types/chai':
         specifier: ^4.3.11
@@ -9624,8 +9624,8 @@ packages:
   flow-enums-runtime@0.0.6:
     resolution: {integrity: sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==}
 
-  flow-parser@0.303.0:
-    resolution: {integrity: sha512-SGifrPA0IQqN4S3MFZ3KPqphxWd+VehHEwpQPEjWQGtJSnPsFakrlqNQH88MLyJGi/Z7WO15FMylybGONwqwxA==}
+  flow-parser@0.304.0:
+    resolution: {integrity: sha512-JjHRBxQX5b5pAn0nwr/U29U+uodOQzIyAKRAFEaXpB2BUkNyW76IRRD0eCEKvZGj23sJ+zDyPuwGGRGNwWW5vQ==}
     engines: {node: '>=0.4.0'}
 
   fnv-plus@1.3.1:
@@ -19614,7 +19614,7 @@ snapshots:
       html-tags: 3.3.1
       html-webpack-plugin: 5.6.3(webpack@5.99.9)
       leven: 3.1.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       open: 8.4.2
       p-map: 4.0.0
       prompts: 2.4.2
@@ -19679,7 +19679,7 @@ snapshots:
       html-tags: 3.3.1
       html-webpack-plugin: 5.6.3(webpack@5.99.9)
       leven: 3.1.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       open: 8.4.2
       p-map: 4.0.0
       prompts: 2.4.2
@@ -19799,7 +19799,7 @@ snapshots:
       cheerio: 1.0.0-rc.12
       feed: 4.2.2
       fs-extra: 11.3.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
       schema-dts: 1.1.5
@@ -19842,7 +19842,7 @@ snapshots:
       combine-promises: 1.2.0
       fs-extra: 11.3.0
       js-yaml: 4.1.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
       schema-dts: 1.1.5
@@ -19883,7 +19883,7 @@ snapshots:
       combine-promises: 1.2.0
       fs-extra: 11.3.0
       js-yaml: 4.1.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
       schema-dts: 1.1.5
@@ -20207,7 +20207,7 @@ snapshots:
       clsx: 2.1.1
       copy-text-to-clipboard: 3.2.0
       infima: 0.2.0-alpha.45
-      lodash: 4.17.21
+      lodash: 4.17.23
       nprogress: 0.2.0
       postcss: 8.5.4
       prism-react-renderer: 2.4.1(react@19.1.1)
@@ -20308,7 +20308,7 @@ snapshots:
       clsx: 2.1.1
       eta: 2.2.0
       fs-extra: 11.3.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
       tslib: 2.8.1
@@ -20385,7 +20385,7 @@ snapshots:
       fs-extra: 11.3.0
       joi: 17.13.3
       js-yaml: 4.1.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@swc/core'
@@ -20411,7 +20411,7 @@ snapshots:
       gray-matter: 4.0.3
       jiti: 1.21.7
       js-yaml: 4.1.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       micromatch: 4.0.8
       p-queue: 6.6.2
       prompts: 2.4.2
@@ -23818,7 +23818,7 @@ snapshots:
       ansis: 3.17.0
       debug: 4.4.1(supports-color@8.1.1)
       http-call: 5.3.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       registry-auth-token: 5.1.0
     transitivePeerDependencies:
       - supports-color
@@ -26761,7 +26761,7 @@ snapshots:
 
   async@2.6.4:
     dependencies:
-      lodash: 4.17.21
+      lodash: 4.17.23
 
   async@3.2.3: {}
 
@@ -27052,7 +27052,7 @@ snapshots:
 
   benchmark@2.1.4:
     dependencies:
-      lodash: 4.17.21
+      lodash: 4.17.23
       platform: 1.3.6
 
   benny@3.7.1:
@@ -29374,7 +29374,7 @@ snapshots:
 
   eslint-plugin-json@4.0.1:
     dependencies:
-      lodash: 4.17.21
+      lodash: 4.17.23
       vscode-json-languageservice: 4.2.1
 
   eslint-plugin-jsx-a11y@6.10.2(eslint@8.57.1):
@@ -30120,7 +30120,7 @@ snapshots:
 
   flow-enums-runtime@0.0.6: {}
 
-  flow-parser@0.303.0: {}
+  flow-parser@0.304.0: {}
 
   fnv-plus@1.3.1: {}
 
@@ -30774,7 +30774,7 @@ snapshots:
       io-ts: 1.10.4
       json-stream-stringify: 3.1.6
       keccak: 3.0.4
-      lodash: 4.17.21
+      lodash: 4.17.23
       micro-eth-signer: 0.14.0
       mnemonist: 0.38.5
       mocha: 10.8.2
@@ -31084,7 +31084,7 @@ snapshots:
 
   history@4.10.1:
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.27.6
       loose-envify: 1.4.0
       resolve-pathname: 3.0.0
       tiny-invariant: 1.3.3
@@ -31160,7 +31160,7 @@ snapshots:
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       pretty-error: 4.0.0
       tapable: 2.2.2
     optionalDependencies:
@@ -32747,7 +32747,7 @@ snapshots:
       '@babel/preset-flow': 7.27.1(@babel/core@7.28.4)
       '@babel/preset-typescript': 7.28.5(@babel/core@7.28.4)
       '@babel/register': 7.28.6(@babel/core@7.28.4)
-      flow-parser: 0.303.0
+      flow-parser: 0.304.0
       graceful-fs: 4.2.11
       micromatch: 4.0.8
       neo-async: 2.6.2
@@ -34636,7 +34636,7 @@ snapshots:
 
   node-emoji@1.11.0:
     dependencies:
-      lodash: 4.17.21
+      lodash: 4.17.23
 
   node-emoji@2.2.0:
     dependencies:
@@ -35912,7 +35912,7 @@ snapshots:
 
   pretty-error@4.0.0:
     dependencies:
-      lodash: 4.17.21
+      lodash: 4.17.23
       renderkid: 3.0.0
 
   pretty-format@29.7.0:
@@ -36587,7 +36587,7 @@ snapshots:
       css-select: 4.3.0
       dom-converter: 0.2.0
       htmlparser2: 6.1.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       strip-ansi: 6.0.1
 
   repeat-string@1.6.1: {}
@@ -37306,7 +37306,7 @@ snapshots:
       ignore: 5.3.2
       js-yaml: 4.1.0
       latest-version: 7.0.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       pluralize: 8.0.0
       semver: 7.7.2
       table: 6.9.0
